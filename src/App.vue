@@ -73,14 +73,16 @@ export default defineComponent({
 
     const validateCommands = (event: Event) => {
       const input = event.target as HTMLInputElement;
-      input.value = input.value.replace(/[^lfr]/gi, '');
+      input.value = input.value.replace(/[^lfr]/gi, '').toLowerCase();
       commands.value = input.value;
     };
 
     const executeCommands = () => {
+      // Reiniciar la posición del rover a (0, 0)
+      x.value = 0;
+      y.value = 0;
       const rover = new roverService(x.value, y.value, direction.value);
-      rover.placeObstacle(2, 2); 
-      result.value = rover.move(commands.value.toLowerCase());
+      rover.placeObstacle(2, 2);
       result.value = rover.move(commands.value);
     };
 
