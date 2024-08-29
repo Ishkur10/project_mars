@@ -80,6 +80,7 @@ export default defineComponent({
     const executeCommands = () => {
       const rover = new roverService(x.value, y.value, direction.value);
       rover.placeObstacle(2, 2); 
+      result.value = rover.move(commands.value.toLowerCase());
       result.value = rover.move(commands.value);
     };
 
